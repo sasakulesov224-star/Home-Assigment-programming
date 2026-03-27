@@ -1,4 +1,4 @@
-def your_code(n, tariffs):
+def solve_floyd(n, tariffs):
     INF = 999999
     
     d = [[INF] * n for _ in range(n)]

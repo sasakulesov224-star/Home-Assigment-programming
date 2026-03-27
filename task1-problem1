@@ -1,0 +1,41 @@
+import heapq
+
+def your_code(n, m, s, t, edges):
+    g = [[] for _ in range(n)]
+    for u, v, w in edges:
+        g[u].append((v, w))
+    
+    INF = 10**18
+    d = [INF] * n
+    p = [-1] * n
+    d[s] = 0
+    
+    pq = [(0, s)]
+    
+    while pq:
+        cd, u = heapq.heappop(pq)
+        
+        if cd > d[u]:
+            continue
+        
+        if u == t:
+            break
+        
+        for v, w in g[u]:
+            nd = cd + w
+            if nd < d[v]:
+                d[v] = nd
+                p[v] = u
+                heapq.heappush(pq, (nd, v))
+    
+    if d[t] == INF:
+        return "Ne mogu naiti marshrut! :'("
+    
+    path = []
+    v = t
+    while v != -1:
+        path.append(str(v))
+        v = p[v]
+    path.reverse()
+    
+    return f"{d[t]}\n{' '.join(path)}"

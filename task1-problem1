@@ -1,6 +1,6 @@
 import heapq
 
-def your_code(n, m, s, t, edges):
+def solve_gps(n, m, s, t, edges):
     g = [[] for _ in range(n)]
     for u, v, w in edges:
         g[u].append((v, w))

@@ -1,0 +1,20 @@
+s = input()
+n = len(s)
+t = '#' + '#'.join(s) + '#'
+m = len(t)
+p = [0] * m
+c = r = 0
+
+for i in range(m):
+    if i < r:
+        p[i] = min(r - i, p[2 * c - i])
+    while i - p[i] - 1 >= 0 and i + p[i] + 1 < m and t[i - p[i] - 1] == t[i + p[i] + 1]:
+        p[i] += 1
+    if i + p[i] > r:
+        c, r = i, i + p[i]
+
+ans = 0
+for i in range(m):
+    ans += (p[i] + 1) // 2
+
+print(ans)

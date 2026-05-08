@@ -1,0 +1,24 @@
+def f(s):
+    n = len(s)
+    for k in range(1, n + 1):
+        if n % k == 0:
+            if s[:k] * (n // k) == s:
+                return k
+    return n
+
+a = sys.stdin.read().splitlines()
+i = 0
+m = int(a[i])
+i += 1
+
+r = []
+
+for j in range(m):
+    while i < len(a) and a[i].strip() == '':
+        i += 1
+    if i < len(a):
+        s = a[i].strip()
+        i += 1
+        r.append(str(f(s)))
+
+print('\n\n'.join(r))

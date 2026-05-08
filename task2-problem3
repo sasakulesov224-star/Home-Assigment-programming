@@ -1,0 +1,15 @@
+s = input()
+n = len(s)
+
+a = sorted((s[i:] + s[:i], i) for i in range(n))
+
+pos = -1
+col = ''
+
+for j, (t, i) in enumerate(a):
+    if i == 0 and pos == -1:
+        pos = j + 1
+    col += t[-1]
+
+print(pos)
+print(col)
